@@ -1,15 +1,28 @@
 package com.wanyu.seckill.web;
 
 import com.wanyu.seckill.db.dao.SeckillActivityDao;
+<<<<<<< HEAD
 import com.wanyu.seckill.db.po.SeckillActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+=======
+import com.wanyu.seckill.db.dao.SeckillCommodityDao;
+import com.wanyu.seckill.db.po.SeckillActivity;
+import com.wanyu.seckill.db.po.SeckillCommodity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> Initial commit
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> Initial commit
 import java.util.Map;
 
 @Controller
@@ -56,4 +69,34 @@ public class SeckillActivityController {
             return "add_success";
     }
 
+<<<<<<< HEAD
+=======
+
+    @RequestMapping("/seckills")
+    public String activityList(Map<String, Object> resultMap){
+        List<SeckillActivity> seckillActivities = seckillActivityDao.querySeckillActivitysByStatus(1);
+        resultMap.put("seckillActivites", seckillActivities);
+        return "seckill_activity";
+    }
+
+    @Autowired
+    private SeckillCommodityDao seckillCommodityDao;
+
+    @RequestMapping("/item/{seckillActivityId}")
+    public String itemPage(Map<String, Object> resultMap, @PathVariable long seckillActivityId) {
+        SeckillActivity seckillActivity = seckillActivityDao.querySeckillActivityById(seckillActivityId);
+        SeckillCommodity seckillCommodity =
+                seckillCommodityDao.querySeckillCommodityById(seckillActivity.getCommodityId());
+        resultMap.put("seckillActivity", seckillActivity);
+        resultMap.put("seckillCommodity", seckillCommodity);
+        resultMap.put("seckillPrice", seckillActivity.getSeckillPrice());
+        resultMap.put("oldPrice", seckillActivity.getOldPrice());
+        resultMap.put("commodityId", seckillActivity.getCommodityId());
+        resultMap.put("commodityName", seckillCommodity.getCommodityName());
+        resultMap.put("commodityDesc", seckillCommodity.getCommodityDesc());
+        return "seckill_item";
+    }
+
+
+>>>>>>> Initial commit
 }
