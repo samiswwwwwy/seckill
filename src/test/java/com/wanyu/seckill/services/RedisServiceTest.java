@@ -24,4 +24,5 @@ class RedisServiceTest {
         String stock =  redisService.getValue("stock:19");
         System.out.println("stock:"+stock);
     }
+
 }

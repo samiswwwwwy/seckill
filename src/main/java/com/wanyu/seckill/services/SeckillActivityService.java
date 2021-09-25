@@ -1,6 +1,9 @@
 package com.wanyu.seckill.services;
 
-/*
+import com.wanyu.seckill.util.RedisService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class SeckillActivityService {
 
@@ -12,10 +15,9 @@ public class SeckillActivityService {
      * @param activityId 商品ID
      * @return
      */
-   /* public boolean seckillStockValidator(long activityId) {
+     public boolean seckillStockValidator(long activityId) {
         String key = "stock:" + activityId;
         return redisService.stockDeductValidator(key);
     }
 
 }
-*/
